@@ -10,26 +10,8 @@ public class SimpleOomage implements Oomage {
     protected int blue;
 
     private static final double WIDTH = 0.01;
-    private static final boolean USE_PERFECT_HASH = false;
-
-    @Override
-    public boolean equals(Object o) {
-        // TODO: Write this method.
-        return false;
-    }
-
-    /* Uncomment this method after you've written
-       equals and failed the testHashCodeAndEqualsConsistency
-       test.
-    @Override
-    public int hashCode() {
-        if (!USE_PERFECT_HASH) {
-            return red + green + blue;
-        } else {
-            // TODO: Write a perfect hash function for Simple Oomages.
-            return 0;
-        }
-    }*/
+//    private static final boolean USE_PERFECT_HASH = false;
+    private static final boolean USE_PERFECT_HASH = true;
 
     public SimpleOomage(int r, int g, int b) {
         if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
@@ -41,6 +23,37 @@ public class SimpleOomage implements Oomage {
         red = r;
         green = g;
         blue = b;
+    }
+    
+    /**
+     * TASK1: Compares object color
+     * @param o object
+     * @return {@code true}: if this.color equals o.color
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;                        // 1. Not-equal-to-null: x.equals(null) should be false.
+        if (this == o) return true;                         // 2. Reflexive: x.equals(x) must be true.
+        if (o.getClass() != this.getClass()) return false;  // 3. verifying that the Object is a SimpleOomage.
+        SimpleOomage object = (SimpleOomage) o;             // 4.casting
+        return (this.red == object.red) && (this.green == object.green) && (this.blue == object.blue);
+    }
+
+    /**
+     * TASK2: Write a perfect hash function for Simple Oomages.
+     *
+     * NOTE: "Note that it is generally necessary to override the hashCodemethod whenever the equals method is overridden,
+     * so as to maintain the general contract for the hashCode method,
+     * which states that equal objects must have equal hash codes.”
+     */
+    @Override
+    public int hashCode() {
+        if (!USE_PERFECT_HASH) { // false
+            return red + green + blue;
+        } else {  // true
+            // perfect hashCode
+            return (red * 52 * 52 + green * 52 + blue) / 5;
+        }
     }
 
     @Override
