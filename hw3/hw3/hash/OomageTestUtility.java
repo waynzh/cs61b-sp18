@@ -25,7 +25,9 @@ public class OomageTestUtility {
 
         int N = oomages.size();      // number of items
         for (int i = 0; i < M; i++) {
-            if (buckets[i].size() < N / 50 || buckets[i].size() > N / 2.5) return false;
+            if (buckets[i].size() < N / 50 || buckets[i].size() > N / 2.5) {
+            	return false;
+            }
         }
         return true;
     }
