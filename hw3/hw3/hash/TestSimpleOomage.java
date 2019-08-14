@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 
-import java.util.Set;
+//import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
@@ -35,7 +35,9 @@ public class TestSimpleOomage {
             for (int j = 0; j < 256; j += 5) {
                 for (int k = 0; k < 256; k += 5) {
                     SimpleOomage b = new SimpleOomage(i, j, k);
-                    if (a.hashCode() == b.hashCode()) count += 1;
+                    if (a.hashCode() == b.hashCode()) {
+                        count += 1;
+                    }
                 }
             }
         }
